@@ -1,73 +1,105 @@
-# Welcome to your Lovable project
+## Authors
 
-## Project info
+Navaneeth Sankar K P, Aditi Chaware, Anarva Ghosh, Krishna Gupta of MIT Institute of Design, Pune, India.
+Mentored under Prof. Aryan Halkude.
 
-**URL**: https://lovable.dev/projects/95f6df09-28ee-4e55-a582-855308796326
+## Project Overview
 
-## How can I edit this code?
+This is a sophisticated AI Assistant web application built with **React and TypeScript**, utilizing **Google's Gemini model** for core intelligence and **Supabase Edge Functions** for a secure, scalable backend. It features multimodal capabilities, allowing users to interact via **text, voice, and image uploads**, and includes customizable conversational tones.
 
-There are several ways of editing your application.
+* **Live Project URL**: [https://lovable.dev/projects/95f6df09-28ee-4e55-a582-855308796326](https://lovable.dev/projects/95f6df09-28ee-4e55-a582-855308796326)
+* **Lovable Project ID**: `95f6df09-28ee-4e55-a582-855308796326`
 
-**Use Lovable**
+***
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/95f6df09-28ee-4e55-a582-855308796326) and start prompting.
+## Key Features
 
-Changes made via Lovable will be committed automatically to this repo.
+The AI Assistant is designed to be a comprehensive conversational tool, offering several modes of interaction:
 
-**Use your preferred IDE**
+1.  **Multimodal Chat**
+    * **Text Chat**: Send messages using the text input field.
+    * **Vision (Image Analysis)**: Use the **`Paperclip`** icon to upload an image or capture a photo with your camera. The image is sent for detailed analysis using the Gemini model.
+    * **Voice Input (Speech-to-Text)**: Use the **`Mic`** icon to enable the **browser's Web Speech API** for hands-free input.
+    * **Voice Output (Text-to-Speech)**: If you use voice input, the assistant will automatically read its response back to you using the **browser's `speechSynthesis` API**.
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2.  **Customizable AI Tone**
+    You can adjust the AI's persona, which modifies the system prompt sent to the model. Access this via the emoji button (e.g., 😊) in the header.
+    * **Friendly** (😊): Casual, warm, and approachable.
+    * **Professional** (👔): Formal, structured, and precise.
+    * **Creative** (🎨): Imaginative, witty, and expressive.
+    * **Concise** (⚡️): Direct, brief, and to-the-point.
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3.  **Theming**
+    * Toggle between **Light (☀️)** and **Dark (🌙)** modes with a single click in the header. The theme preference is persisted using `localStorage`.
 
-Follow these steps:
+***
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Technology Stack
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+This project is built using modern web development standards and a powerful serverless backend:
 
-# Step 3: Install the necessary dependencies.
-npm i
+### Frontend
+* **Framework**: **React**
+* **Language**: **TypeScript**
+* **Build Tool**: **Vite**
+* **UI Components**: **shadcn-ui** (based on Radix UI primitives)
+* **Styling**: **Tailwind CSS** with custom HSL color variables for easy theming and specific bubble colors (`--assistant-bubble`, `--user-bubble`).
+* **State Management/Routing**: `@tanstack/react-query`, `react-router-dom`
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+### Backend (AI & Data)
+* **Serverless Platform**: **Supabase Edge Functions**
+* **AI Models**:
+    * **Chat & Vision**: **Google Gemini 2.5 Flash** (via the Lovable AI Gateway)
+    * **Speech-to-Text**: OpenAI Whisper API
+* **Database**: Supabase (Used for Edge Functions deployment and configuration)
 
-**Edit a file directly in GitHub**
+***
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Setup and Installation
 
-**Use GitHub Codespaces**
+### Prerequisites
+* Node.js & npm (or equivalent like Bun/Yarn)
+* A Lovable API Key and an OpenAI API Key (for full functionality)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Local Development
+1.  **Clone the Repository**:
+    ```sh
+    git clone <YOUR_GIT_URL>
+    cd navuxneeth/gemini-assistant-suite/gemini-assistant-suite-13d17f6438daf9696915373fed2ccf99717423e4
+    ```
 
-## What technologies are used for this project?
+2.  **Install Dependencies**:
+    ```sh
+    npm install # or bun install / yarn install
+    ```
+    * *(Note: The project uses various packages including `embla-carousel-react`, `recharts`, and several `@radix-ui/react-*` libraries as detailed in `package.json`.)*
 
-This project is built with:
+3.  **Configure Environment Variables**:
+    Create a local `.env` file in the root directory to match the structure in the provided configuration.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+    ```env
+    # Supabase Client Details (from .env file)
+    VITE_SUPABASE_PROJECT_ID="whjfxdumvxlzwtsyhqhd"
+    VITE_SUPABASE_PUBLISHABLE_KEY="<YOUR_SUPABASE_PUBLISHABLE_KEY>"
+    VITE_SUPABASE_URL="[https://whjfxdumvxlzwtsyhqhd.supabase.co](https://whjfxdumvxlzwtsyhqhd.supabase.co)"
+    ```
+    * *You will also need to configure your Supabase Edge Functions with the necessary AI API keys (`LOVABLE_API_KEY` and `OPENAI_API_KEY`) to run the backend logic.*
 
-## How can I deploy this project?
+4.  **Start the Development Server**:
+    ```sh
+    npm run dev
+    ```
 
-Simply open [Lovable](https://lovable.dev/projects/95f6df09-28ee-4e55-a582-855308796326) and click on Share -> Publish.
+***
 
-## Can I connect a custom domain to my Lovable project?
+## API and Backend Configuration
 
-Yes, you can!
+The core logic of the AI assistant resides in three Supabase Edge Functions, utilizing external AI services through API keys set in the serverless environment.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+| Function | Purpose | Model / Service | Key Requirement |
+| :--- | :--- | :--- | :--- |
+| **`chat`** | Handles conversational text requests. | `google/gemini-2.5-flash` via Lovable Gateway | `LOVABLE_API_KEY` |
+| **`vision`** | Handles multimodal (image) analysis. | `google/gemini-2.5-flash` via Lovable Gateway | `LOVABLE_API_KEY` |
+| **`speech-to-text`** | Converts spoken audio to text. | OpenAI Whisper API | `OPENAI_API_KEY` |
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+The Supabase project is configured with the ID `whjfxdumvxlzwtsyhqhd`. The frontend establishes its connection using `src/integrations/supabase/client.ts`.
